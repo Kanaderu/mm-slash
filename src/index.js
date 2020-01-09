@@ -58,15 +58,18 @@ function checkStatus(res) {
   }
 }
 
+function verifyToken(req, token) {
+  // authenticate Mattermost token
+  const reqToken = req.header('authorization').replace('Token ', '').trim();
+  if(reqToken.localeCompare(token) != 0) {
+    let err = new Error("Incorrect Mattermost API Token");
+    throw err;
+  }
+}
+
 app.post('/weather', (req, res) => {
   try {
-    // authenticate Mattermost token
-    const reqToken = req.header('authorization').replace('Token ', '').trim();
-    if(reqToken.localeCompare(POST_WEATHER_TOKEN) != 0) {
-      let err = new Error("Incorrect Mattermost API Token");
-      err.response = res;
-      throw err;
-    }
+    verifyToken(req, POST_WEATHER_TOKEN);
 
     // test query zipcode is valid using regex
     const zipcode = req.body.text.trim() === "" ? 45469 : req.body.text.trim();
@@ -89,13 +92,7 @@ app.post('/weather', (req, res) => {
 
 app.get('/weather', (req, res) => {
   try {
-    // authenticate Mattermost token
-    const reqToken = req.header('authorization').replace('Token ', '').trim();
-    if(reqToken.localeCompare(GET_WEATHER_TOKEN) != 0) {
-      let err = new Error("Incorrect Mattermost API Token");
-      err.response = res;
-      throw err;
-    }
+    verifyToken(req, GET_WEATHER_TOKEN);
 
     // get weather defaulted to 45469
     fetchWeather(45469, res);
