@@ -4,6 +4,8 @@ services:
     build: .
     environment:
      - OPENWEATHERMAP_API_KEY=${OPENWEATHERMAP_API_KEY}
+     - GET_WEATHER_TOKEN=${GET_WEATHER_TOKEN}
+     - POST_WEATHER_TOKEN=${POST_WEATHER_TOKEN}
     expose:
       - "80"
 

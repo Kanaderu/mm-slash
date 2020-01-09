@@ -32,9 +32,10 @@ The app is serviced through port `80`. To service a custom slash command, point 
 
 Currently the following endpoints are provided through this app:
 
-| App Name | Type | Format | Description |
-|:---------------|:--------|:-----------|:-------------------------------------|
-| [`/weather`](#weather) | `GET` | `/weather` | Displays the weather using OpenWeatherMap for a predefined location |
+| App Name | Type | Format | Mattermost API Token Env Variable| Description |
+|:---------------|:--------|:-----------|:-----------------------|:--------------|
+| [`/weather`](#weather) | `GET` | `/weather` | `GET_WEATHER_TOKEN` | Displays the weather using OpenWeatherMap for a predefined location (45469) |
+| [`/weather`](#weather) | `POST` | `/weather 45250` | `POST_WEATHER_TOKEN` | Displays the weather at a provided zipcode (or 45469 if none provided) |
 
 ### API Keys
 
@@ -44,11 +45,15 @@ API keys are to be kept private and secure. To that end, in a production setup, 
 - Using `sudo` runs with separate environment variables, use `sudo -E [command]` when executing with `sudo` (or run as root user)
 - Set an environment variable by running for the current terminal session by running `export API_KEY=<API_KEY_GOES_HERE>`
 
+### Mattermost Tokens
+
+To ensure the proper endpoints and messages are valid, Mattermost tokens need to be provided and are verified against to ensure security and authorization. The tokens are defined the same way as the API Keys. Refer each endpoint's environment variable name to define their specific tokens.
+
 ## Endpoint Details
 
 #### `/weather`
 
-The OpenWeatherMap API requires an API_KEY which is declared by setting the `OPENWEATHERMAP_API_KEY` environment variable.
+The OpenWeatherMap API requires an API_KEY which is declared by setting the `OPENWEATHERMAP_API_KEY` environment variable. Use only one of the two version provided (`GET` or `POST`). `POST` functions the same as `GET` when no zipcode is provided.
 
 
 # Running the MM-Slash App
