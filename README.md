@@ -2,7 +2,7 @@
 
 Mattermost Integration App for Slash Commands
 
-## Setup
+## Overview
 
 The repository is built using `expressJS` to implment a lightweight RESTful API app for Mattermost. The following runs through how to quickly setup the App integration with a Dockerized Mattermost container. The repository is tested against the [Mattermost Docker Setup](https://github.com/mattermost/mattermost-docker).
 
@@ -50,3 +50,14 @@ API keys are to be kept private and secure. To that end, in a production setup, 
 
 The OpenWeatherMap API requires an API_KEY which is declared by setting the `OPENWEATHERMAP_API_KEY` environment variable.
 
+
+# Running the MM-Slash App
+
+Once the app is configured, run the following commands:
+
+```bash
+docker-compose build
+docker-compose up -d
+```
+
+The Mattermost docker containers must be already running for the App to attach to its network (or the network must already exist). 
