@@ -2,8 +2,10 @@ version: '3'
 services:
   mmslash:
     build: .
+    environment:
+     - OPENWEATHERMAP_API_KEY=${OPENWEATHERMAP_API_KEY}
     expose:
-      - "3000"
+      - "80"
 
 networks:
   default:
