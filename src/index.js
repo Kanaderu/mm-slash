@@ -36,7 +36,7 @@ app.get('/weather', (req, res) => {
 
       res.set('Content-Type', 'application/json');
       res.send({
-        "response_type": "in_channel",
+        "response_type": "ephemeral",
         "text": retString
       });
     })
