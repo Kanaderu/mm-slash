@@ -6,6 +6,8 @@ Mattermost Integration App for Slash Commands
 
 The repository is built using `expressJS` to implment a lightweight RESTful API app for Mattermost. The following runs through how to quickly setup the App integration with a Dockerized Mattermost container. The repository is tested against the [Mattermost Docker Setup](https://github.com/mattermost/mattermost-docker).
 
+ExpressJS implementation has been converted to typescript deprecating the previous JS-only setup. Refer to commit #53c14a4 to view original setup.
+
 ### Network Defaults
 
 #### Attaching to the Mattermost Docker network
@@ -14,7 +16,7 @@ The repository is initially setup to use docker and connects to the default dock
 
 #### Hostname Setup
 
-The hostname on the docker network is setup as its service-name (`mmslash`) which will be used to access `expressJS`.
+The hostname on the docker network is setup as its service-name (`mmslash`) which will be used to access `expressJS`. The app is serviced through port `80`. The port can be changed by configuring the `docker-compose.yml` file.
 
 ## Mattermost Setup
 
@@ -28,13 +30,19 @@ In order for Mattermost to connect to other applications, hostnames need to be w
 
 ## Adding Custom Slash Integrations
 
-The app is serviced through port `80`. To service a custom slash command, point the URL to `http://mmslash/weather` to access the `/weather` endpoint.
+Slash commands are prefixed with `/slash` followed by the serving endpoint. To service a custom slash command, point the URL to ie; `http://mmslash/slash/weather` to access the `/weather` endpoint.
 
 Currently the following endpoints are provided through this app:
 
 | App Name | Type | Format | Mattermost API Token Env Variable| Description |
 |:---------------|:--------|:-----------|:-----------------------|:--------------|
 | [`/weather`](#weather) | `POST` | `/weather 45250` | `POST_WEATHER_TOKEN` | Displays the weather at a provided zipcode (or 45469 if none provided) |
+
+## Adding Incoming Webhook Integrations
+
+```
+TODO
+```
 
 ### API Keys
 
