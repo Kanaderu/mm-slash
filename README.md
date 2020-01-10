@@ -34,7 +34,6 @@ Currently the following endpoints are provided through this app:
 
 | App Name | Type | Format | Mattermost API Token Env Variable| Description |
 |:---------------|:--------|:-----------|:-----------------------|:--------------|
-| [`/weather`](#weather) | `GET` | `/weather` | `GET_WEATHER_TOKEN` | Displays the weather using OpenWeatherMap for a predefined location (45469) |
 | [`/weather`](#weather) | `POST` | `/weather 45250` | `POST_WEATHER_TOKEN` | Displays the weather at a provided zipcode (or 45469 if none provided) |
 
 ### API Keys
@@ -53,8 +52,7 @@ To ensure the proper endpoints and messages are valid, Mattermost tokens need to
 
 #### `/weather`
 
-The OpenWeatherMap API requires an API_KEY which is declared by setting the `OPENWEATHERMAP_API_KEY` environment variable. Use only one of the two version provided (`GET` or `POST`). `POST` functions the same as `GET` when no zipcode is provided.
-
+The OpenWeatherMap API requires an API_KEY which is declared by setting the `OPENWEATHERMAP_API_KEY` environment variable.
 
 # Running the MM-Slash App
 

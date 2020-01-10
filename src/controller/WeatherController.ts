@@ -15,13 +15,13 @@ export default class WeatherContorller extends BaseController {
 
   protected async executeImpl(req: Request, res: Response): Promise<void | any> {
     try {
+      // check for valid token
       this.verifyToken(req);
 
       // test query zipcode is valid using regex
       const zipcode = !req.body || !req.body.text || req.body.text.trim() === "" ? 45469 : req.body.text.trim();
       if (/^[0-9]{5}(?:-[0-9]{4})?$/.test(zipcode)) {
         this.fetchWeather(parseInt(zipcode, 10), res);
-
       } else {
         throw new Error("Incorrect Zipcode Format Provided");
       }
@@ -49,7 +49,7 @@ export default class WeatherContorller extends BaseController {
                         `| High       | ${data.main.temp_max} °F   |\n` +
                         `| Low        | ${data.main.temp_min} °F   |\n`;
 
-      return this.ok(res, {
+      this.ok(res, {
         response_type: "ephemeral",
         text: retString,
       });
