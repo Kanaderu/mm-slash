@@ -2,9 +2,11 @@
   "name": "mm-slash",
   "version": "1.0.0",
   "description": "Mattermost Custom Slashes",
-  "main": "src/index.js",
+  "main": "src/App.ts",
   "scripts": {
-    "start": "node src/index.jsx",
+    "prebuild": "tslint -c tslint.json -p tsconfig.json --fix",
+    "build": "tsc",
+    "start": "node dist/App.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -18,12 +20,14 @@
   },
   "homepage": "https://github.com/Kanaderu/mm-slash#readme",
   "dependencies": {
-    "body-parser": "^1.19.0",
     "express": "^4.17.1",
-    "node-fetch": "^2.6.0"
+    "isomorphic-fetch": "^2.2.1",
+    "node-fetch": "^2.6.0",
+    "ts-node": "^8.6.0"
   },
   "devDependencies": {
     "@types/express": "^4.17.2",
+    "@types/isomorphic-fetch": "0.0.35",
     "@types/node": "^13.1.5",
     "ts-node-dev": "^1.0.0-pre.44",
     "tslint": "^5.20.1",
