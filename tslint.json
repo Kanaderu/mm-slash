@@ -4,7 +4,8 @@
     "tslint:recommended"
   ],
   "rules": {
-    "no-console": false
+    "no-console": false,
+    "max-line-length": [ false ]
   },
   "member-ordering": false,
   "no-consecutive-blank-lines": false,
